@@ -28,10 +28,7 @@ public class Customer {
 	public Customer() {
 		super();
 	}
-
-	
-
-	public Customer(Integer customerId, String fullName, String emailId, String password, String phoneNumber,
+public Customer(Integer customerId, String fullName, String emailId, String password, String phoneNumber,
 			Address address, LocalDate date, Map<Integer, Order> orders) {
 		super();
 		this.customerId = customerId;
