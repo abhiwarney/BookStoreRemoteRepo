@@ -1,11 +1,14 @@
 package com.cg.BookStore.beans;
 
 import java.sql.Date;
+import java.util.Map;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Customer {
@@ -16,12 +19,15 @@ public class Customer {
 	private String emailId;
 	private String password;
 	private String phoneNumber;
+	@Embedded
 	private Address address;
 	private Date date;
+	@OneToMany
+	private Map<Integer, Order> orders;
 	public Customer() {
 		super();
 	}
-	
+
 	public Customer(int customerId, String fullName, String emailId, String password, String phoneNumber,
 			Address address, Date date) {
 		super();
@@ -33,7 +39,7 @@ public class Customer {
 		this.address = address;
 		this.date = date;
 	}
-    
+
 	public Customer(String fullName, String emailId, String password, String phoneNumber, Address address) {
 		super();
 		this.fullName = fullName;
@@ -42,6 +48,8 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 	}
+
+
 
 	public String getFullName() {
 		return fullName;
@@ -73,7 +81,7 @@ public class Customer {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -90,6 +98,17 @@ public class Customer {
 		this.date = date;
 	}
 
+
+
+
+	public Map<Integer, Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Map<Integer, Order> orders) {
+		this.orders = orders;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -99,6 +118,7 @@ public class Customer {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
+		result = prime * result + ((orders == null) ? 0 : orders.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		return result;
@@ -135,6 +155,11 @@ public class Customer {
 				return false;
 		} else if (!fullName.equals(other.fullName))
 			return false;
+		if (orders == null) {
+			if (other.orders != null)
+				return false;
+		} else if (!orders.equals(other.orders))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -148,6 +173,9 @@ public class Customer {
 		return true;
 	}
 
-		
-	
+
+
+
+
+
 }
