@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int customerId;
+	private Integer customerId;
 	private String fullName;
 	private String emailId;
 	private String password;
@@ -28,7 +28,7 @@ public class Customer {
 		super();
 	}
 
-	public Customer(int customerId, String fullName, String emailId, String password, String phoneNumber,
+	public Customer(Integer customerId, String fullName, String emailId, String password, String phoneNumber,
 			Address address, Date date) {
 		super();
 		this.customerId = customerId;
@@ -82,11 +82,11 @@ public class Customer {
 		this.address = address;
 	}
 
-	public int getCustomerId() {
+	public Integer getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
 
@@ -97,8 +97,6 @@ public class Customer {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
-
 
 
 	public Map<Integer, Order> getOrders() {
@@ -114,7 +112,7 @@ public class Customer {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + customerId;
+		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
@@ -138,7 +136,10 @@ public class Customer {
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (customerId != other.customerId)
+		if (customerId == null) {
+			if (other.customerId != null)
+				return false;
+		} else if (!customerId.equals(other.customerId))
 			return false;
 		if (date == null) {
 			if (other.date != null)
@@ -171,6 +172,13 @@ public class Customer {
 		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", fullName=" + fullName + ", emailId=" + emailId + ", password="
+				+ password + ", phoneNumber=" + phoneNumber + ", address=" + address + ", date=" + date + ", orders="
+				+ orders + "]";
 	}
 
 

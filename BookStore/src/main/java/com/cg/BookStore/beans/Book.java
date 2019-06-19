@@ -18,17 +18,17 @@ public class Book {
 	private String title;
 	private String author;
 	private String description;
-	private int ISDNnumber;
+	private Integer ISDNnumber;
 	private String thumbnailImage;
-	private float price;
+	private Float price;
 	private Date publishDate;
 	private Time updateTime;
-	private int quantity;
+	private Integer quantity;
 	public Book() {
 		super();
 	}
-	public Book(String bookId, String category, String title, String author, String description, int iSDNnumber,
-			String thumbnailImage, float price, Date publishDate, Time updateTime, int quantity) {
+	public Book(String bookId, String category, String title, String author, String description, Integer iSDNnumber,
+			String thumbnailImage, Float price, Date publishDate, Time updateTime, Integer quantity) {
 		super();
 		this.bookId = bookId;
 		this.category = category;
@@ -43,8 +43,8 @@ public class Book {
 		this.quantity = quantity;
 	}
 	
-	public Book(String bookId, String category, String title, String author, String description, int iSDNnumber,
-			String thumbnailImage, float price, Date publishDate, Time updateTime) {
+	public Book(String bookId, String category, String title, String author, String description, Integer iSDNnumber,
+			String thumbnailImage, Float price, Date publishDate, Time updateTime) {
 		super();
 		this.bookId = bookId;
 		this.category = category;
@@ -87,10 +87,10 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getISDNnumber() {
+	public Integer getISDNnumber() {
 		return ISDNnumber;
 	}
-	public void setISDNnumber(int iSDNnumber) {
+	public void setISDNnumber(Integer iSDNnumber) {
 		ISDNnumber = iSDNnumber;
 	}
 	public String getThumbnailImage() {
@@ -99,10 +99,10 @@ public class Book {
 	public void setThumbnailImage(String thumbnailImage) {
 		this.thumbnailImage = thumbnailImage;
 	}
-	public float getPrice() {
+	public Float getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
 	public Date getPublishDate() {
@@ -117,24 +117,25 @@ public class Book {
 	public void setUpdateTime(Time updateTime) {
 		this.updateTime = updateTime;
 	}
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ISDNnumber;
+		result = prime * result + ((ISDNnumber == null) ? 0 : ISDNnumber.hashCode());
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
 		result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + Float.floatToIntBits(price);
+		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((publishDate == null) ? 0 : publishDate.hashCode());
-		result = prime * result + quantity;
+		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
 		result = prime * result + ((thumbnailImage == null) ? 0 : thumbnailImage.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((updateTime == null) ? 0 : updateTime.hashCode());
@@ -149,7 +150,10 @@ public class Book {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		if (ISDNnumber != other.ISDNnumber)
+		if (ISDNnumber == null) {
+			if (other.ISDNnumber != null)
+				return false;
+		} else if (!ISDNnumber.equals(other.ISDNnumber))
 			return false;
 		if (author == null) {
 			if (other.author != null)
@@ -171,14 +175,20 @@ public class Book {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
+		if (price == null) {
+			if (other.price != null)
+				return false;
+		} else if (!price.equals(other.price))
 			return false;
 		if (publishDate == null) {
 			if (other.publishDate != null)
 				return false;
 		} else if (!publishDate.equals(other.publishDate))
 			return false;
-		if (quantity != other.quantity)
+		if (quantity == null) {
+			if (other.quantity != null)
+				return false;
+		} else if (!quantity.equals(other.quantity))
 			return false;
 		if (thumbnailImage == null) {
 			if (other.thumbnailImage != null)
@@ -197,6 +207,7 @@ public class Book {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", category=" + category + ", title=" + title + ", author=" + author

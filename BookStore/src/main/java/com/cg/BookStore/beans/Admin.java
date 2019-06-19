@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Admin {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int adminId;
+	private Integer adminId;
 	private String emailId;
     private String fullName;
     private String password;
@@ -19,10 +19,10 @@ public class Admin {
 		this.fullName = fullName;
 		this.password = password;
 	}
-	public int getAdminId() {
+	public Integer getAdminId() {
 		return adminId;
 	}
-	public void setAdminId(int adminId) {
+	public void setAdminId(Integer adminId) {
 		this.adminId = adminId;
 	}
 	public String getEmailId() {
@@ -47,7 +47,7 @@ public class Admin {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + adminId;
+		result = prime * result + ((adminId == null) ? 0 : adminId.hashCode());
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -62,7 +62,10 @@ public class Admin {
 		if (getClass() != obj.getClass())
 			return false;
 		Admin other = (Admin) obj;
-		if (adminId != other.adminId)
+		if (adminId == null) {
+			if (other.adminId != null)
+				return false;
+		} else if (!adminId.equals(other.adminId))
 			return false;
 		if (emailId == null) {
 			if (other.emailId != null)
@@ -81,6 +84,12 @@ public class Admin {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", emailId=" + emailId + ", fullName=" + fullName + ", password="
+				+ password + "]";
+	}
+
 	
 }
 

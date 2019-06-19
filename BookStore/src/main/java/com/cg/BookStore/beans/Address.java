@@ -7,11 +7,11 @@ public class Address {
 	private String country;
 	private String city;
 	private String street;
-	private int zipCode;
+	private Integer zipCode;
 	public Address() {
 		super();
 	}
-	public Address(String country, String city, String street, int zipCode) {
+	public Address(String country, String city, String street, Integer zipCode) {
 		super();
 		this.country = country;
 		this.city = city;
@@ -36,10 +36,10 @@ public class Address {
 	public void setStreet(String street) {
 		this.street = street;
 	}
-	public int getZipCode() {
+	public Integer getZipCode() {
 		return zipCode;
 	}
-	public void setZipCode(int zipCode) {
+	public void setZipCode(Integer zipCode) {
 		this.zipCode = zipCode;
 	}
 	@Override
@@ -49,7 +49,7 @@ public class Address {
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
-		result = prime * result + zipCode;
+		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
 		return result;
 	}
 	@Override
@@ -76,7 +76,10 @@ public class Address {
 				return false;
 		} else if (!street.equals(other.street))
 			return false;
-		if (zipCode != other.zipCode)
+		if (zipCode == null) {
+			if (other.zipCode != null)
+				return false;
+		} else if (!zipCode.equals(other.zipCode))
 			return false;
 		return true;
 	}
@@ -84,6 +87,7 @@ public class Address {
 	public String toString() {
 		return "Address [country=" + country + ", city=" + city + ", street=" + street + ", zipCode=" + zipCode + "]";
 	}
+	
 	
 	
 }
