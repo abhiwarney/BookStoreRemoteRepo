@@ -1,6 +1,7 @@
 package com.cg.BookStore.beans;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Map;
 
 import javax.persistence.Embedded;
@@ -21,15 +22,17 @@ public class Customer {
 	private String phoneNumber;
 	@Embedded
 	private Address address;
-	private Date date;
+	private LocalDate date;
 	@OneToMany
 	private Map<Integer, Order> orders;
 	public Customer() {
 		super();
 	}
 
+	
+
 	public Customer(Integer customerId, String fullName, String emailId, String password, String phoneNumber,
-			Address address, Date date) {
+			Address address, LocalDate date, Map<Integer, Order> orders) {
 		super();
 		this.customerId = customerId;
 		this.fullName = fullName;
@@ -38,7 +41,10 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.date = date;
+		this.orders = orders;
 	}
+
+
 
 	public Customer(String fullName, String emailId, String password, String phoneNumber, Address address) {
 		super();
@@ -90,13 +96,18 @@ public class Customer {
 		this.customerId = customerId;
 	}
 
-	public Date getDate() {
+	
+
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+
+
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
 
 
 	public Map<Integer, Order> getOrders() {

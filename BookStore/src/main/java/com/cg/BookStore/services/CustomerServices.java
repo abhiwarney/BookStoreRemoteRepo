@@ -1,5 +1,7 @@
 package com.cg.BookStore.services;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +18,7 @@ CustomerDao customerDao;
 	public Customer registerCustomer(String fullName, String emailId, String password, String phoneNumber,
 			String country, String city, String street, Integer zipCode) {
 		Customer customer=new Customer(fullName, emailId, password, phoneNumber, new Address(country, city, street, zipCode));
+		customer.setDate(LocalDate.now());
 		return customerDao.save(customer);
 	}
 
@@ -23,14 +26,14 @@ CustomerDao customerDao;
 	public Customer login(String emailId, String password) {
 		Customer customer=getCustomerDetails(emailId);
 		if(customer.getPassword().equals(password)) 
-		return customer;
+			return customer;
 		else
 			throw new InvalidUsernameOrPasswordException();
 	}
 
 	@Override
 	public Customer getCustomerDetails(String emailId) {
-		return customerDao.findById(emailId).orElseThrow(()->new CustomerNotFoundException("Customer not found"));
+		return customerDao.getCustDetails(emailId);
 	}
 	
 
