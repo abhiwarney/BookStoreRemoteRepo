@@ -31,6 +31,8 @@ public class AdminServices implements IAdminService{
 	OrderServices orderServices;
 	@Autowired
 	CategoryDao categoryDao;
+	@Autowired
+	ReviewServices reviewServices;
 
 	@Override
 	public Admin createAdminUser(String emailId, String fullName, String password) {
@@ -137,9 +139,9 @@ public class AdminServices implements IAdminService{
 	public Category getCategoryDetails(Integer categoryId) {
 		return categoryDao.findById(categoryId).orElseThrow(()->new CategoryNotFoundException("Invalid Category Id!!"));
 	}
-	
+
 	@Override
-	public boolean updateCategory(Integer categoryId) {
+	public boolean updateCategory(Integer categoryId)throws CategoryNotFoundException {
 		Category category = getCategoryDetails(categoryId);
 		categoryDao.save(category);
 		return false;
@@ -147,28 +149,26 @@ public class AdminServices implements IAdminService{
 
 	@Override
 	public List<Category> listAllCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		return categoryDao.findAll();
 	}
 
 	@Override
 	public boolean deleteReview(Integer reviewId) {
-		// TODO Auto-generated method stub
-		return false;
+		reviewServices.deleteReview(reviewId);
+		return true;
 	}
 
 	@Override
 	public boolean updateReview(Review review) {
-		// TODO Auto-generated method stub
+		reviewServices.updateReview(review);
 		return false;
 	}
 
 	@Override
 	public List<Review> listAllReview() {
-		// TODO Auto-generated method stub
-		return null;
+		return reviewServices.listAllReviews();
 	}
 
-	
+
 
 }
