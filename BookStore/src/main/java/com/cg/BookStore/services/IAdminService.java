@@ -8,6 +8,7 @@ import com.cg.BookStore.beans.Category;
 import com.cg.BookStore.beans.Customer;
 import com.cg.BookStore.beans.Order;
 import com.cg.BookStore.beans.Review;
+import com.cg.BookStore.exceptions.CategoryNotFoundException;
 
 public interface IAdminService {
 	/*----------------Admin-User Services-----------------------*/
@@ -37,8 +38,8 @@ public interface IAdminService {
 	/*-------------------------Admin-Category Services------------------------------*/
 	public Category createCategory(Category category);
 	public boolean deleteCategory(Integer categoryId);
-	public boolean updateCategory(Integer categoryId);
-	public Category getCategoryDetails(Integer categoryId);
+	public boolean updateCategory(Integer categoryId)throws CategoryNotFoundException;
+	public Category getCategoryDetails(Integer categoryId)throws CategoryNotFoundException;
 	public List<Category> listAllCategories();
 	
 	/*-------------------------Admin-Review Services------------------------------*/
