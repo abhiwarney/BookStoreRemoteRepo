@@ -22,6 +22,8 @@ public class Customer {
 	@Embedded
 	private Address address;
 	private Date date;
+	@OneToMany(mappedBy="customer")
+	private Book book;
 	@OneToMany
 	private Map<Integer, Order> orders;
 	public Customer() {
