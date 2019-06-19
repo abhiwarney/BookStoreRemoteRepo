@@ -14,7 +14,7 @@ public class CustomerServices implements ICustomerService{
 CustomerDao customerDao;
 	@Override
 	public Customer registerCustomer(String fullName, String emailId, String password, String phoneNumber,
-			String country, String city, String street, int zipCode) {
+			String country, String city, String street, Integer zipCode) {
 		Customer customer=new Customer(fullName, emailId, password, phoneNumber, new Address(country, city, street, zipCode));
 		return customerDao.save(customer);
 	}
