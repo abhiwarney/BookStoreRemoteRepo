@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="custOrder")
 public class Order {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,7 +22,7 @@ public class Order {
 	private String city;
 	private String country;
 	private Integer zipcode;
-	@OneToMany(mappedBy="Book")
+	@OneToMany
 	private List<Book>books;
 	private Integer quantity;
 	private Float subtotal;

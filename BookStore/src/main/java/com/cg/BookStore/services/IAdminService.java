@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cg.BookStore.beans.Admin;
 import com.cg.BookStore.beans.Book;
+import com.cg.BookStore.beans.Category;
 import com.cg.BookStore.beans.Customer;
 import com.cg.BookStore.beans.Order;
 
@@ -32,6 +33,12 @@ public interface IAdminService {
 	public Order viewOrderDetails(Integer orderId);
 	public List<Order> listAllOrders();
 	
+	/*-------------------------Admin-Category Services------------------------------*/
+	public Category createCategory(Category category);
+	public boolean deleteCategory(Integer categoryId);
+	public boolean updateCategory(Integer categoryId);
+	public List<Category> listAllCategories();
+	
 	/*-------------------------Admin-Review Services------------------------------*/
-	public List<E>
+	
 }
