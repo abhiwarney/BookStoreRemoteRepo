@@ -18,8 +18,7 @@ public class CustomerController {
 			String country, String city, String street, int zipCode){
 		customerServices.registerCustomer(fullName, emailId, password, phoneNumber, country, city, street, zipCode);
 		return new ResponseEntity<>("Customer Registered",HttpStatus.OK);
-		
-	}
+		}
     @RequestMapping(value="/login", method=RequestMethod.GET,  produces=MediaType.APPLICATION_JSON_VALUE,  headers="Accept=application/json")
 	public ResponseEntity<Customer> loginDetails(@RequestParam String emailId, String password){
 		return new ResponseEntity<>(customerServices.login(emailId, password),HttpStatus.OK);
