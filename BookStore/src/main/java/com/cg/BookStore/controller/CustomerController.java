@@ -22,5 +22,6 @@ public class CustomerController {
     @RequestMapping(value="/login", method=RequestMethod.GET,  produces=MediaType.APPLICATION_JSON_VALUE,  headers="Accept=application/json")
 	public ResponseEntity<Customer> loginDetails(@RequestParam String emailId, String password){
 		return new ResponseEntity<>(customerServices.login(emailId, password),HttpStatus.OK);
-		}
+		
+    }
  }
