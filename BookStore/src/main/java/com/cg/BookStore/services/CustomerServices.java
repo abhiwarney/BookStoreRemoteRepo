@@ -13,7 +13,7 @@ import com.cg.BookStore.exceptions.InvalidUsernameOrPasswordException;
 @Component("customerService")
 public class CustomerServices implements ICustomerService{
 	@Autowired
-CustomerDao customerDao;
+	CustomerDao customerDao;
 	@Override
 	public Customer registerCustomer(String fullName, String emailId, String password, String phoneNumber,
 			String country, String city, String street, Integer zipCode) {
@@ -35,6 +35,6 @@ CustomerDao customerDao;
 	public Customer getCustomerDetails(String emailId) {
 		return customerDao.getCustDetails(emailId);
 	}
-	
+
 
 }

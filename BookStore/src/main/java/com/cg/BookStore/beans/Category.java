@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -11,6 +12,32 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer categoryId;
 	private String categoryName;
+	@OneToMany(mappedBy="category")
+	private Book book;
+	
+	public Category(String categoryName, Book book) {
+		super();
+		this.categoryName = categoryName;
+		this.book = book;
+	}
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
+	}
+	public Category(Integer categoryId, String categoryName, Book book) {
+		super();
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.book = book;
+	}
 	public Category() {
 	}
 	public Category(Integer categoryId, String categoryName) {
@@ -34,6 +61,7 @@ public class Category {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((categoryId == null) ? 0 : categoryId.hashCode());
 		result = prime * result + ((categoryName == null) ? 0 : categoryName.hashCode());
 		return result;
@@ -47,6 +75,11 @@ public class Category {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
+		if (book == null) {
+			if (other.book != null)
+				return false;
+		} else if (!book.equals(other.book))
+			return false;
 		if (categoryId == null) {
 			if (other.categoryId != null)
 				return false;
@@ -61,7 +94,7 @@ public class Category {
 	}
 	@Override
 	public String toString() {
-		return "Category [bookId=" + categoryId + ", categoryName=" + categoryName + "]";
+		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", book=" + book + "]";
 	}
 	
 

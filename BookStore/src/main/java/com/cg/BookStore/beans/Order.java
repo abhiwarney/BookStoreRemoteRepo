@@ -31,6 +31,7 @@ public class Order {
 	private String paymentMethod;
 	private Date  orderDate;
 	public Order() {}
+	
 	public Order(String recipientName, Long recipientNumber, String streetAddress, String city, String country,
 			Integer zipcode, List<Book> books, Integer quantity, Float subtotal, Float total, String orderStatus,
 			String paymentMethod, Date orderDate) {

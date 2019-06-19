@@ -2,12 +2,14 @@ package com.cg.BookStore.beans;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Book {
@@ -25,9 +27,29 @@ public class Book {
 	private Date publishDate;
 	private Time updateTime;
 	private Integer quantity;
+	@OneToMany(mappedBy="book")
+	private List<Review> reviews;
 	public Book() {
 		super();
 	}
+	
+	public Book(Category category, String title, String author, String description, Integer iSDNnumber,
+			String thumbnailImage, Float price, Date publishDate, Time updateTime, Integer quantity,
+			List<Review> reviews) {
+		super();
+		this.category = category;
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		ISDNnumber = iSDNnumber;
+		this.thumbnailImage = thumbnailImage;
+		this.price = price;
+		this.publishDate = publishDate;
+		this.updateTime = updateTime;
+		this.quantity = quantity;
+		this.reviews = reviews;
+	}
+
 	public Book(String bookId, Category category, String title, String author, String description, Integer iSDNnumber,
 			String thumbnailImage, Float price, Date publishDate, Time updateTime, Integer quantity) {
 		super();
