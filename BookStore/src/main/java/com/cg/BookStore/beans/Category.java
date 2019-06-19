@@ -14,6 +14,12 @@ public class Category {
 	private String categoryName;
 	@OneToMany(mappedBy="category")
 	private Book book;
+	
+	public Category(String categoryName, Book book) {
+		super();
+		this.categoryName = categoryName;
+		this.book = book;
+	}
 	public Integer getCategoryId() {
 		return categoryId;
 	}

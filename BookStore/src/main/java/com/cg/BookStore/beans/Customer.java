@@ -30,6 +30,19 @@ public class Customer {
 		super();
 	}
 
+	public Customer(String fullName, String emailId, String password, String phoneNumber, Address address, Date date,
+			Book book, Map<Integer, Order> orders) {
+		super();
+		this.fullName = fullName;
+		this.emailId = emailId;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.date = date;
+		this.book = book;
+		this.orders = orders;
+	}
+
 	public Customer(Integer customerId, String fullName, String emailId, String password, String phoneNumber,
 			Address address, Date date) {
 		super();

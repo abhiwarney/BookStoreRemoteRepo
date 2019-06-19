@@ -7,6 +7,7 @@ import com.cg.BookStore.beans.Book;
 import com.cg.BookStore.beans.Category;
 import com.cg.BookStore.beans.Customer;
 import com.cg.BookStore.beans.Order;
+import com.cg.BookStore.beans.Review;
 
 public interface IAdminService {
 	/*----------------Admin-User Services-----------------------*/
@@ -40,5 +41,8 @@ public interface IAdminService {
 	public List<Category> listAllCategories();
 	
 	/*-------------------------Admin-Review Services------------------------------*/
+	public boolean deleteReview(Integer reviewId);
+	public boolean updateReview(Review review);
+	public List<Review> listAllReview();
 	
 }

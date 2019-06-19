@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -13,15 +14,19 @@ public class Review {
 	private Integer rating;
 	private String headline;
 	private String comment;
-	public Review(Integer reviewId, Integer rating, String headline, String comment) {
+	@ManyToOne
+	private Book book;
+
+	public Review() {
 		super();
-		this.reviewId = reviewId;
+	}
+
+	public Review(Integer rating, String headline, String comment, Book book) {
+		super();
 		this.rating = rating;
 		this.headline = headline;
 		this.comment = comment;
-	}
-	public Review() {
-		super();
+		this.book = book;
 	}
 	public Integer getReviewId() {
 		return reviewId;
@@ -47,16 +52,19 @@ public class Review {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + ((headline == null) ? 0 : headline.hashCode());
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		result = prime * result + ((reviewId == null) ? 0 : reviewId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -66,6 +74,11 @@ public class Review {
 		if (getClass() != obj.getClass())
 			return false;
 		Review other = (Review) obj;
+		if (book == null) {
+			if (other.book != null)
+				return false;
+		} else if (!book.equals(other.book))
+			return false;
 		if (comment == null) {
 			if (other.comment != null)
 				return false;
@@ -88,11 +101,11 @@ public class Review {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Review [reviewId=" + reviewId + ", rating=" + rating + ", headline=" + headline + ", comment=" + comment
-				+ "]";
+				+ ", book=" + book + "]";
 	}
-	
 
 }
