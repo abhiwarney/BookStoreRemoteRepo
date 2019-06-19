@@ -14,7 +14,7 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String bookId;
-	private String category;
+	private Category category;
 	private String title;
 	private String author;
 	private String description;
@@ -27,7 +27,7 @@ public class Book {
 	public Book() {
 		super();
 	}
-	public Book(String bookId, String category, String title, String author, String description, Integer iSDNnumber,
+	public Book(String bookId, Category category, String title, String author, String description, Integer iSDNnumber,
 			String thumbnailImage, Float price, Date publishDate, Time updateTime, Integer quantity) {
 		super();
 		this.bookId = bookId;
@@ -42,31 +42,16 @@ public class Book {
 		this.updateTime = updateTime;
 		this.quantity = quantity;
 	}
-	
-	public Book(String bookId, String category, String title, String author, String description, Integer iSDNnumber,
-			String thumbnailImage, Float price, Date publishDate, Time updateTime) {
-		super();
-		this.bookId = bookId;
-		this.category = category;
-		this.title = title;
-		this.author = author;
-		this.description = description;
-		ISDNnumber = iSDNnumber;
-		this.thumbnailImage = thumbnailImage;
-		this.price = price;
-		this.publishDate = publishDate;
-		this.updateTime = updateTime;
-	}
 	public String getBookId() {
 		return bookId;
 	}
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 	public String getTitle() {
@@ -123,7 +108,6 @@ public class Book {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -207,7 +191,6 @@ public class Book {
 			return false;
 		return true;
 	}
-	
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", category=" + category + ", title=" + title + ", author=" + author
