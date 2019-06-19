@@ -1,12 +1,14 @@
 package com.cg.BookStore.beans;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,12 +31,14 @@ public class Order {
 	private Float total;
 	private String orderStatus;
 	private String paymentMethod;
-	private Date  orderDate;
+	private LocalDate  orderDate;
+	@ManyToOne
+	private Customer customer;
 	public Order() {}
 	
 	public Order(String recipientName, Long recipientNumber, String streetAddress, String city, String country,
 			Integer zipcode, List<Book> books, Integer quantity, Float subtotal, Float total, String orderStatus,
-			String paymentMethod, Date orderDate) {
+			String paymentMethod, LocalDate orderDate) {
 		super();
 		this.recipientName = recipientName;
 		this.recipientNumber = recipientNumber;
@@ -52,7 +56,7 @@ public class Order {
 	}
 	public Order(Integer orderId, String recipientName, Long recipientNumber, String streetAddress, String city,
 			String country, Integer zipcode, List<Book> books, Integer quantity, Float subtotal, Float total,
-			String orderStatus, String paymentMethod, Date orderDate) {
+			String orderStatus, String paymentMethod, LocalDate orderDate) {
 		super();
 		this.orderId = orderId;
 		this.recipientName = recipientName;
@@ -69,6 +73,27 @@ public class Order {
 		this.paymentMethod = paymentMethod;
 		this.orderDate = orderDate;
 	}
+	
+	public Order(String recipientName, Long recipientNumber, String streetAddress, String city, String country,
+			Integer zipcode, List<Book> books, Integer quantity, Float subtotal, Float total, String orderStatus,
+			String paymentMethod, LocalDate orderDate, Customer customer) {
+		super();
+		this.recipientName = recipientName;
+		this.recipientNumber = recipientNumber;
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.country = country;
+		this.zipcode = zipcode;
+		this.books = books;
+		this.quantity = quantity;
+		this.subtotal = subtotal;
+		this.total = total;
+		this.orderStatus = orderStatus;
+		this.paymentMethod = paymentMethod;
+		this.orderDate = orderDate;
+		this.customer = customer;
+	}
+
 	public Integer getOrderId() {
 		return orderId;
 	}
@@ -147,12 +172,24 @@ public class Order {
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
-	public Date getOrderDate() {
+	
+	public LocalDate getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Date orderDate) {
+
+	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
 	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -160,6 +197,7 @@ public class Order {
 		result = prime * result + ((books == null) ? 0 : books.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 		result = prime * result + ((orderDate == null) ? 0 : orderDate.hashCode());
 		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
 		result = prime * result + ((orderStatus == null) ? 0 : orderStatus.hashCode());
@@ -173,6 +211,7 @@ public class Order {
 		result = prime * result + ((zipcode == null) ? 0 : zipcode.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -196,6 +235,11 @@ public class Order {
 			if (other.country != null)
 				return false;
 		} else if (!country.equals(other.country))
+			return false;
+		if (customer == null) {
+			if (other.customer != null)
+				return false;
+		} else if (!customer.equals(other.customer))
 			return false;
 		if (orderDate == null) {
 			if (other.orderDate != null)
@@ -254,13 +298,14 @@ public class Order {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Order [orderId=" + orderId + ", recipientName=" + recipientName + ", recipientNumber=" + recipientNumber
 				+ ", streetAddress=" + streetAddress + ", city=" + city + ", country=" + country + ", zipcode="
 				+ zipcode + ", books=" + books + ", quantity=" + quantity + ", subtotal=" + subtotal + ", total="
 				+ total + ", orderStatus=" + orderStatus + ", paymentMethod=" + paymentMethod + ", orderDate="
-				+ orderDate + "]";
+				+ orderDate + ", customer=" + customer + "]";
 	}
 	
 	

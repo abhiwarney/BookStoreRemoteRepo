@@ -36,5 +36,11 @@ public class CustomerServices implements ICustomerService{
 		return customerDao.getCustDetails(emailId);
 	}
 
+	@Override
+	public Customer getDetailsById(Integer id) {
+		return customerDao.findById(id).orElseThrow(()->new CustomerNotFoundException());
+	}
+	
+
 
 }
