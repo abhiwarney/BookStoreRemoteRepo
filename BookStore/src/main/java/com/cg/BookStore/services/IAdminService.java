@@ -18,7 +18,7 @@ public interface IAdminService {
 	
 	/*-----------------Admin-Customer Services----------------*/
 	public Customer createCustomer(String fullName, String emailId, String password, String phoneNumber, String country, String city, String street, Integer zipCode);
-	public boolean deleteCustomer(Customer customer);
+	public boolean deleteCustomer(Integer customerId);
 	public boolean editCustomer(Customer customer);
 	public List<Customer> listAllCustomer();
 	
@@ -38,6 +38,7 @@ public interface IAdminService {
 	public Category createCategory(Category category);
 	public boolean deleteCategory(Integer categoryId);
 	public boolean updateCategory(Integer categoryId);
+	public Category getCategoryDetails(Integer categoryId);
 	public List<Category> listAllCategories();
 	
 	/*-------------------------Admin-Review Services------------------------------*/
