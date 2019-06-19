@@ -1,5 +1,7 @@
 package com.cg.BookStore.beans;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,31 +15,37 @@ public class Category {
 	private Integer categoryId;
 	private String categoryName;
 	@OneToMany(mappedBy="category")
-	private Book book;
+	private List<Book> book;
 	
-	public Category(String categoryName, Book book) {
+	
+	public Category(String categoryName, List<Book> book) {
 		super();
 		this.categoryName = categoryName;
 		this.book = book;
 	}
+	
+	public Category(Integer categoryId, String categoryName, List<Book> book) {
+		super();
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.book = book;
+	}
+
+	public List<Book> getBook() {
+		return book;
+	}
+
+	public void setBook(List<Book> book) {
+		this.book = book;
+	}
+
 	public Integer getCategoryId() {
 		return categoryId;
 	}
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
-	public Book getBook() {
-		return book;
-	}
-	public void setBook(Book book) {
-		this.book = book;
-	}
-	public Category(Integer categoryId, String categoryName, Book book) {
-		super();
-		this.categoryId = categoryId;
-		this.categoryName = categoryName;
-		this.book = book;
-	}
+	
 	public Category() {
 	}
 	public Category(Integer categoryId, String categoryName) {
