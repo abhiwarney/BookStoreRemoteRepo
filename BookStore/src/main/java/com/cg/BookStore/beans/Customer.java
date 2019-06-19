@@ -22,16 +22,14 @@ public class Customer {
 	@Embedded
 	private Address address;
 	private Date date;
-	@OneToMany(mappedBy="customer")
-	private Book book;
 	@OneToMany
 	private Map<Integer, Order> orders;
 	public Customer() {
 		super();
 	}
-
+	
 	public Customer(String fullName, String emailId, String password, String phoneNumber, Address address, Date date,
-			Book book, Map<Integer, Order> orders) {
+			Map<Integer, Order> orders) {
 		super();
 		this.fullName = fullName;
 		this.emailId = emailId;
@@ -39,7 +37,6 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.date = date;
-		this.book = book;
 		this.orders = orders;
 	}
 
