@@ -80,27 +80,6 @@ public class AdminServices implements IAdminService{
 		return customerDao.findAll();
 	}
 
-	@Override
-	public List<Book> listAllBooks() {
-		return bookService.listAllBooks();
-	}
-
-	@Override
-	public String createBook(Book book) {
-		return bookService.registerBook(book);
-	}
-
-	@Override
-	public boolean deleteBook(Integer bookId) {
-		bookService.deleteBook(bookId);
-		return false;
-	}
-
-	@Override
-	public boolean updateBook(Book book) {
-		bookService.updateBook(book);
-		return false;
-	}
 
 	@Override
 	public boolean updateOrder(Order order) {

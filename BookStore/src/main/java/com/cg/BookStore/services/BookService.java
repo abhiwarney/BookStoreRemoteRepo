@@ -13,9 +13,9 @@ public class BookService implements IBookService {
 	BookDao bookDao;
 	
 	@Override
-	public String registerBook(Book book) {
-		bookDao.save(book);
-		return null;
+	public Book registerBook(Book book) {
+		return bookDao.save(book);
+		
 	}
 
 	@Override

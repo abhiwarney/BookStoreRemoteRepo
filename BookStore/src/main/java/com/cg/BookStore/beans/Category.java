@@ -2,6 +2,7 @@ package com.cg.BookStore.beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,12 @@ public class Category {
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
 		this.book = book;
+	}
+	
+
+	public Category(String categoryName) {
+		super();
+		this.categoryName = categoryName;
 	}
 
 	public List<Book> getBook() {

@@ -23,11 +23,6 @@ public interface IAdminService {
 	public boolean editCustomer(Customer customer);
 	public List<Customer> listAllCustomer();
 	
-	/*-------------------------Admin-Book Services------------------------------*/
-	public List<Book> listAllBooks();
-	public String createBook(Book book);
-	public boolean deleteBook(Integer bookId);
-	public boolean updateBook(Book book);
 	
 	/*-------------------------Admin-Order Services------------------------------*/
 	public boolean updateOrder(Order order);

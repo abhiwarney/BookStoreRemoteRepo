@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +16,8 @@ import javax.persistence.OneToMany;
 public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String bookId;
-	@ManyToOne
+	private Integer bookId;
+	@ManyToOne( cascade=CascadeType.PERSIST)
 	private Category category;
 	private String title;
 	private String author;
@@ -24,8 +25,7 @@ public class Book {
 	private Integer ISDNnumber;
 	private String thumbnailImage;
 	private Float price;
-	private Date publishDate;
-	private Time updateTime;
+	private String publishDate;
 	private Integer quantity;
 	@OneToMany(mappedBy="book")
 	private List<Review> reviews;
@@ -34,7 +34,7 @@ public class Book {
 	}
 	
 	public Book(Category category, String title, String author, String description, Integer iSDNnumber,
-			String thumbnailImage, Float price, Date publishDate, Time updateTime, Integer quantity,
+			String thumbnailImage, Float price, String publishDate, Integer quantity,
 			List<Review> reviews) {
 		super();
 		this.category = category;
@@ -45,13 +45,12 @@ public class Book {
 		this.thumbnailImage = thumbnailImage;
 		this.price = price;
 		this.publishDate = publishDate;
-		this.updateTime = updateTime;
 		this.quantity = quantity;
 		this.reviews = reviews;
 	}
 
-	public Book(String bookId, Category category, String title, String author, String description, Integer iSDNnumber,
-			String thumbnailImage, Float price, Date publishDate, Time updateTime, Integer quantity) {
+	public Book(Integer bookId, Category category, String title, String author, String description, Integer iSDNnumber,
+			String thumbnailImage, Float price, String publishDate, Time updateTime, Integer quantity) {
 		super();
 		this.bookId = bookId;
 		this.category = category;
@@ -62,13 +61,27 @@ public class Book {
 		this.thumbnailImage = thumbnailImage;
 		this.price = price;
 		this.publishDate = publishDate;
-		this.updateTime = updateTime;
 		this.quantity = quantity;
 	}
-	public String getBookId() {
+	
+	public Book(Category category, String title, String author, String description, Integer iSDNnumber,
+			String thumbnailImage, Float price, String publishDate, Integer quantity) {
+		super();
+		this.category = category;
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		ISDNnumber = iSDNnumber;
+		this.thumbnailImage = thumbnailImage;
+		this.price = price;
+		this.publishDate = publishDate;
+		this.quantity = quantity;
+	}
+
+	public Integer getBookId() {
 		return bookId;
 	}
-	public void setBookId(String bookId) {
+	public void setBookId(Integer bookId) {
 		this.bookId = bookId;
 	}
 	public Category getCategory() {
@@ -113,24 +126,31 @@ public class Book {
 	public void setPrice(Float price) {
 		this.price = price;
 	}
-	public Date getPublishDate() {
+	
+
+	public String getPublishDate() {
 		return publishDate;
 	}
-	public void setPublishDate(Date publishDate) {
+
+	public void setPublishDate(String publishDate) {
 		this.publishDate = publishDate;
 	}
-	public Time getUpdateTime() {
-		return updateTime;
+
+	public List<Review> getReviews() {
+		return reviews;
 	}
-	public void setUpdateTime(Time updateTime) {
-		this.updateTime = updateTime;
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
+
 	public Integer getQuantity() {
 		return quantity;
 	}
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -143,11 +163,12 @@ public class Book {
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((publishDate == null) ? 0 : publishDate.hashCode());
 		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
+		result = prime * result + ((reviews == null) ? 0 : reviews.hashCode());
 		result = prime * result + ((thumbnailImage == null) ? 0 : thumbnailImage.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((updateTime == null) ? 0 : updateTime.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -197,6 +218,11 @@ public class Book {
 				return false;
 		} else if (!quantity.equals(other.quantity))
 			return false;
+		if (reviews == null) {
+			if (other.reviews != null)
+				return false;
+		} else if (!reviews.equals(other.reviews))
+			return false;
 		if (thumbnailImage == null) {
 			if (other.thumbnailImage != null)
 				return false;
@@ -207,19 +233,16 @@ public class Book {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (updateTime == null) {
-			if (other.updateTime != null)
-				return false;
-		} else if (!updateTime.equals(other.updateTime))
-			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Book [bookId=" + bookId + ", category=" + category + ", title=" + title + ", author=" + author
 				+ ", description=" + description + ", ISDNnumber=" + ISDNnumber + ", thumbnailImage=" + thumbnailImage
-				+ ", price=" + price + ", publishDate=" + publishDate + ", updateTime=" + updateTime + ", quantity="
-				+ quantity + "]";
+				+ ", price=" + price + ", publishDate=" + publishDate + ", quantity=" + quantity + ", reviews="
+				+ reviews + "]";
 	}
+	
 	
 }
