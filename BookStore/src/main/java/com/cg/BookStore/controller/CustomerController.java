@@ -1,8 +1,12 @@
 package com.cg.BookStore.controller;
 import org.springframework.http.MediaType;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.BookStore.beans.Customer;
 import com.cg.BookStore.services.CustomerServices;
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
+@RequestMapping("/customer")
 public class CustomerController {
 	@Autowired
 	CustomerServices customerServices;
@@ -24,4 +30,10 @@ public class CustomerController {
 		return new ResponseEntity<>(customerServices.login(emailId, password),HttpStatus.OK);
 		
     }
+    @RequestMapping(value="/showAll", method=RequestMethod.GET,  produces=MediaType.APPLICATION_JSON_VALUE,  headers="Accept=application/json")
+	public ResponseEntity<List<Customer>> showAll(){
+		return new ResponseEntity<>(customerServices.showAllCustomers(),HttpStatus.OK);
+		
+    }
+
  }

@@ -1,6 +1,7 @@
 package com.cg.BookStore.services;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,6 +40,12 @@ public class CustomerServices implements ICustomerService{
 	@Override
 	public Customer getDetailsById(Integer id) {
 		return customerDao.findById(id).orElseThrow(()->new CustomerNotFoundException());
+	}
+
+	@Override
+	public List<Customer> showAllCustomers() {
+		return customerDao.findAll();
+		
 	}
 	
 
