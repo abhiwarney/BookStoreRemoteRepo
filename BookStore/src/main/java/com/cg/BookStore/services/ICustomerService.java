@@ -8,4 +8,7 @@ public Customer login(String emailId, String password);
 public Customer getCustomerDetails(String emailId);
 public Customer getDetailsById(Integer id);
 public List<Customer> showAllCustomers();
+Customer updateCustomer(Integer id, String fullName, String emailId, String password, String phoneNumber,
+		String country, String city, String street, Integer zipCode);
+public Customer updateCustomerDetails(Customer customer);
 }

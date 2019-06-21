@@ -45,9 +45,21 @@ public class CustomerServices implements ICustomerService{
 	@Override
 	public List<Customer> showAllCustomers() {
 		return customerDao.findAll();
-		
+
 	}
+
+	@Override
+	public Customer updateCustomer(Integer id,String fullName, String emailId, String password, String phoneNumber,
+			String country, String city, String street, Integer zipCode) {
+				Customer customer=new Customer(id, fullName, emailId, password, phoneNumber, new Address(country, city, street, zipCode));
+return customerDao.save(customer);
 	
+		}
+
+	@Override
+	public Customer updateCustomerDetails(Customer customer) {
+		return customerDao.save(customer);
+	}
+		}
 
 
-}

@@ -52,8 +52,16 @@ public Customer(Integer customerId, String fullName, String emailId, String pass
 		this.address = address;
 	}
 
-
-
+	public Customer(Integer customerId, String fullName, String emailId, String password, String phoneNumber,
+			Address address) {
+		super();
+		this.customerId = customerId;
+		this.fullName = fullName;
+		this.emailId = emailId;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+	}
 	public String getFullName() {
 		return fullName;
 	}
