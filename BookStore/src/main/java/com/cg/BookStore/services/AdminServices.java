@@ -41,9 +41,29 @@ public class AdminServices implements IAdminService{
 	}
 
 	@Override
-	public boolean editAdminUser(Admin admin) {
-		adminDao.save(admin);
-		return true;
+	public boolean editAdminUser(Integer adminId,Admin admin) {
+		System.out.println("Admin test="+adminDao.findById(adminId));
+		if(adminDao.findById(adminId).isPresent()!=true) {
+			System.out.println("if run");
+			return false;
+		}
+		else {
+			Admin admin1= adminDao.findById(adminId).get();
+			if(admin.getEmailId()!=null)
+			{
+				admin1.setEmailId(admin.getEmailId());
+			}
+			if(admin.getFullName()!=null)
+			{
+				admin1.setFullName(admin.getFullName());
+			}
+			if(admin.getPassword()!=null)
+			{
+				admin1.setPassword(admin.getPassword());
+			}
+			adminDao.save(admin1);
+			return true;
+		}
 	}
 
 	@Override

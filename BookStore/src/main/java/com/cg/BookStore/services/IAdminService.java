@@ -13,8 +13,9 @@ import com.cg.BookStore.exceptions.CategoryNotFoundException;
 public interface IAdminService {
 	/*----------------Admin-User Services-----------------------*/
 	public Admin createAdminUser(String emailId, String fullName, String password);
-	public boolean editAdminUser(Admin admin);
+	public boolean editAdminUser(Integer adminId,Admin admin);
 	public boolean deleteAdminUser(Integer adminId);
+
 	public List<Admin> listAllAdminUser();
 	
 	/*-----------------Admin-Customer Services----------------*/

@@ -13,6 +13,10 @@ public class Admin {
 	private String emailId;
     private String fullName;
     private String password;
+    
+	public Admin() {
+		super();
+	}
 	public Admin(String emailId, String fullName, String password) {
 		super();
 		this.emailId = emailId;
