@@ -37,6 +37,24 @@ public class Order {
 	public Order() {}
 	
 	public Order(String recipientName, Long recipientNumber, String streetAddress, String city, String country,
+			Integer zipcode, Integer quantity, Float subtotal, Float total, String orderStatus, String paymentMethod,
+			LocalDate orderDate) {
+		super();
+		this.recipientName = recipientName;
+		this.recipientNumber = recipientNumber;
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.country = country;
+		this.zipcode = zipcode;
+		this.quantity = quantity;
+		this.subtotal = subtotal;
+		this.total = total;
+		this.orderStatus = orderStatus;
+		this.paymentMethod = paymentMethod;
+		this.orderDate = orderDate;
+	}
+
+	public Order(String recipientName, Long recipientNumber, String streetAddress, String city, String country,
 			Integer zipcode, List<Book> books, Integer quantity, Float subtotal, Float total, String orderStatus,
 			String paymentMethod, LocalDate orderDate) {
 		super();

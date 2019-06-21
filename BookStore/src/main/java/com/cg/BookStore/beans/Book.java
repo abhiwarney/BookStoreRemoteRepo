@@ -1,10 +1,10 @@
 package com.cg.BookStore.beans;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +19,7 @@ public class Book {
 	private Integer bookId;
 	@ManyToOne( cascade=CascadeType.PERSIST)
 	private Category category;
+	@Column(unique=true)
 	private String title;
 	private String author;
 	private String description;

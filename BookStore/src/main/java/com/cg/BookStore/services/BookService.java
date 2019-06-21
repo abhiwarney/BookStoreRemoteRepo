@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.cg.BookStore.beans.Book;
 import com.cg.BookStore.daoservices.BookDao;
+import com.cg.BookStore.exceptions.BookNotFoundException;
 @Component("bookService")
 public class BookService implements IBookService {
 	@Autowired
@@ -14,6 +15,7 @@ public class BookService implements IBookService {
 	
 	@Override
 	public Book registerBook(Book book) {
+		
 		return bookDao.save(book);
 		
 	}
@@ -32,6 +34,11 @@ public class BookService implements IBookService {
 	@Override
 	public List<Book> listAllBooks() {
 		return bookDao.findAll();
+	}
+
+	@Override
+	public Book getBookDetails(Integer bookId) throws BookNotFoundException {
+		return bookDao.findById(bookId).orElseThrow(()->new  BookNotFoundException("Invalid Book Id!"));
 	}
 
 }
